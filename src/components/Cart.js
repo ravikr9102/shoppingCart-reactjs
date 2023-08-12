@@ -23,7 +23,7 @@ class Cart extends React.Component {
         </header>
         {this.state.isVisible ? (
           <div className="cart-box">
-            <span onClick={this.handleVisible} className="cross">
+          <span onClick={this.handleVisible} className="cross">
               X
             </span>
             <header className="text-center box-header">
@@ -33,7 +33,7 @@ class Cart extends React.Component {
             </header>
             <ul>
               {this.props.cart.map((item, i) => (
-                <li>
+                <li key={i}>
                   <img
                     src={`/images/static/products/${item.sku}_2.jpg`}
                     alt=""

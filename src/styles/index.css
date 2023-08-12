@@ -267,9 +267,9 @@ h4 {
   top: 0;
   right: 0;
   height: 100vh;
-  width: 400px;
+  width: 450px;
   background-color: #555;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
 }
 .cart-box img,
 h5,
@@ -302,16 +302,9 @@ strong {
   align-items: center;
 }
 .cross {
-  width: 48px;
-  height: 48px;
-  background-color: #555;
   position: absolute;
-  right: 100%;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #fff;
+  font-size: 2.5rem;
   cursor: pointer;
 }
 .total-price {
@@ -345,4 +338,11 @@ strong {
 .check-btn {
   margin-right: 9rem;
   margin-top: 4rem;
+}
+@media screen and (max-width: 768px) {
+  .md-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

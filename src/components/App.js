@@ -14,6 +14,20 @@ class App extends React.Component {
       activeSize: [],
     };
   }
+  componentDidMount() {
+    if (localStorage.carts) {
+      this.setState({ cart: JSON.parse(localStorage.carts) || [] });
+    }
+    window.addEventListener('beforeunload', this.handleUpdateLocalStorage);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.handleUpdateLocalStorage);
+  }
+
+  handleUpdateLocalStorage = () => {
+    localStorage.setItem('carts', JSON.stringify(this.state.cart));
+  };
+
   handleSize = (size) => {
     let array = [];
     if (this.state.activeSize.includes(size)) {
@@ -21,11 +35,11 @@ class App extends React.Component {
     } else {
       array = [...this.state.activeSize, size];
     }
-    this.setState({ activeSize: array }, () => this.sortData())
+    this.setState({ activeSize: array }, () => this.sortData());
   };
   handleSort = ({ target }) => {
     let { name, value } = target;
-    this.setState({ [name]: value}, () => this.sortData());
+    this.setState({ [name]: value }, () => this.sortData());
   };
   handleAddToCart = (item) => {
     let arr = this.state.cart;
@@ -36,14 +50,9 @@ class App extends React.Component {
       item.quantity = 1;
       arr.push(item);
     }
-    this.setState(
-      {
-        cart: arr,
-      },
-      () => {
-        console.log(this.state.cart);
-      }
-    );
+    this.setState({
+      cart: arr,
+    });
   };
   handleIncrement = (item) => {
     let val = this.state.cart;
@@ -88,7 +97,7 @@ class App extends React.Component {
       );
       this.setState({
         sortedFilteredArray: filterProduct,
-      })
+      });
     }
     if (value === 'LowestToHighest') {
       filterProduct.sort((a, b) => a.price - b.price);
@@ -102,15 +111,18 @@ class App extends React.Component {
         sortedFilteredArray: filterProduct,
       });
     }
-    if(value === 'select'){
-        this.setState({
-            sortedFilteredArray: filterProduct,
-        })
+    if (value === 'select') {
+      this.setState({
+        sortedFilteredArray: filterProduct,
+      });
     }
   };
   render() {
     let sizes = [...new Set(data.map((item) => item.availableSizes).flat())];
-    let displayProduct = this.state.sortedFilteredArray.length === 0 ? data : this.state.sortedFilteredArray;
+    let displayProduct =
+      this.state.sortedFilteredArray.length === 0
+        ? data
+        : this.state.sortedFilteredArray;
     return (
       <>
         <Sizes

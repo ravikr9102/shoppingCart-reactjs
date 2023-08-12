@@ -14,7 +14,7 @@ function Product(props) {
           </label>
         </header>
         <section className="product-wrapper">
-          <ul className="prodcut-list">
+          <ul className="prodcut-list md-flex">
             {productData.map((product) => (
               <li key={product.id}>
                 <p>Free Shipping</p>

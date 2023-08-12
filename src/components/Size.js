@@ -5,6 +5,7 @@ function Sizes(props) {
         <ul className="sizes">
           {props.sizes.map((size) => (
             <li 
+              key={size}
               className={props.activeSize.includes(size) ? 'active' : ''}
               onClick={() => {
                 props.handleSize(size);
