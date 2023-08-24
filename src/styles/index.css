@@ -346,16 +346,16 @@ strong {
     gap: 32px;
     text-align: center;
   }
-  .sidebar{
+  .sidebar {
     margin-top: 8rem;
   }
-  .sidebar ul{
+  .sidebar ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 8px;
     column-gap: 2px;
   }
-  .cart-box{
+  .cart-box {
     width: 100%;
     height: 100%;
   }
